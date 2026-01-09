@@ -4,7 +4,7 @@ import Video from 'react-native-video';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import JobHeader from '../../components/JobHeader';
 
-const BASE_URL = 'https://your-api-domain.com/';
+const BASE_URL = 'https://sandbox-job-app.bosselt.com'
 
 export default function VideoPlayerScreen({ route, navigation }: any) {
     const { video } = route.params;
