@@ -211,7 +211,7 @@ Cloud backup
 👨‍💻 Author
 
 Shivam Pandey
-Full-Stack Developer (React Native + Node.js)
+React Native
 
 📜 License
 
