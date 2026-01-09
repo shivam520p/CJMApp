@@ -9,8 +9,6 @@ const BASE_URL = 'https://sandbox-job-app.bosselt.com/'
 export default function VideoPlayerScreen({ route, navigation }: any) {
     const { video } = route.params;
     const videoUrl = `${BASE_URL}${video.filePath}`;
-    console.log(video, videoUrl)
-
     return (
         <SafeAreaView style={styles.safe}>
             <JobHeader
