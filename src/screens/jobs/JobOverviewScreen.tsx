@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NetInfo from '@react-native-community/netinfo';
@@ -49,7 +49,7 @@ export default function JobOverviewScreen({ navigation, route }: any) {
         }, [])
     );
 
-    if (loading || !jobDetails) {
+    if (!jobDetails && loading) {
         return (
             <SafeAreaView style={styles.safe}>
                 <ActivityIndicator size="large" />

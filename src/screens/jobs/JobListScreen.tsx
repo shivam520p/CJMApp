@@ -48,8 +48,10 @@ export default function JobListScreen({ navigation }: any) {
             setJobs(merged);
             await saveLocalJobs(merged);
         } catch {
+            setJobs(localJobs);
         }
     };
+
 
     useFocusEffect(
         useCallback(() => {

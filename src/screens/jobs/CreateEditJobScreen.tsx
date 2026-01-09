@@ -66,16 +66,17 @@ export default function CreateEditJobScreen({ navigation, route }: any) {
 
         setLoading(true);
 
+        const jobId = job?._id || uuid.v4();
         const localJob = {
-            id: job?._id || uuid.v4(),
-            clientJobId: job?.clientJobId || uuid.v4(),
+            id: jobId,
+            clientJobId: job?.clientJobId || jobId,
             title,
             description,
             location: `${clientName}, ${cityName}`,
             budget: Number(budget),
-            date: startDate ? formatDate(startDate) : null,
             _syncStatus: isEdit ? 'updated' : 'pending',
         };
+
 
         const localJobs = await getLocalJobs();
 
