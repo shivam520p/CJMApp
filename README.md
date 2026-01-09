@@ -1,97 +1,223 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+📱 CJM – Contractor Job Management App
 
-# Getting Started
+CJM is a React Native CLI mobile application that helps contractors manage jobs, notes, and site videos with a true offline-first architecture.
+The app works seamlessly without internet and automatically syncs data when connectivity is restored.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+✨ Key Features
+🧰 Job Management
 
-## Step 1: Start Metro
+Create, edit, and view jobs
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+Offline job creation & updates
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+Automatic background sync when online
 
-```sh
-# Using npm
-npm start
+Local-first rendering (no UI blocking)
 
-# OR using Yarn
-yarn start
-```
+📝 Job Notes
 
-## Step 2: Build and run your app
+Add notes to jobs
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+Offline note creation
 
-### Android
+Notes sync automatically when online
 
-```sh
-# Using npm
-npm run android
+🎥 Site Video Management
 
-# OR using Yarn
+Upload site videos from device gallery
+
+Offline video queue support
+
+Automatic upload when network restores
+
+Watch uploaded videos in a native video player
+
+🌐 Offline-First Architecture
+
+App fully usable without internet
+
+Cached data loads instantly
+
+Sync queues for jobs, notes, and videos
+
+Client-generated IDs to prevent conflicts
+
+📶 Network Awareness
+
+Online/offline detection using NetInfo
+
+“Back Online” sync banner
+
+Graceful fallback when API fails
+
+🎨 UI & UX
+
+Clean, modern UI
+
+Gradient cards and floating action button
+
+Consistent design across Android & iOS
+
+SafeArea-aware layouts
+
+🛠 Tech Stack
+Frontend
+
+React Native CLI
+
+TypeScript
+
+React Navigation
+
+react-native-linear-gradient
+
+react-native-video
+
+react-native-image-picker
+
+State & Storage
+
+React Context API
+
+AsyncStorage
+
+Offline queues with sync handlers
+
+Networking
+
+Axios
+
+REST APIs
+
+NetInfo for connectivity detection
+
+📦 Installation & Setup
+1️⃣ Clone the repository
+git clone https://github.com/your-username/CJMApp.git
+cd CJMApp
+
+2️⃣ Install dependencies
+yarn install
+
+3️⃣ iOS setup
+cd ios
+pod install
+cd ..
+
+4️⃣ Run the app
+Android
 yarn android
-```
 
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
+iOS
 yarn ios
-```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+🧪 Testing Offline Mode (Important)
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+⚠️ Note: React Native debug mode requires Metro bundler.
 
-## Step 3: Modify your app
+✅ Correct way to test offline behavior
 
-Now that you have successfully run the app, let's make changes!
+Use a release build.
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+Android Release APK
+cd android
+./gradlew assembleRelease
+adb install app/build/outputs/apk/release/app-release.apk
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+Then:
 
-## Congratulations! :tada:
+Turn off internet
 
-You've successfully run and modified your React Native App. :partying_face:
+Create jobs / notes / upload videos
 
-### Now what?
+Turn internet back on
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+Data syncs automatically
 
-# Troubleshooting
+📁 Project Structure
+src/
+├── api/                     # API layer
+├── assets/                  # Fonts, icons, images
+├── components/              # Reusable UI components
+│   ├── notes/
+│   ├── overview/
+│   └── video/
+├── context/                 # Global app contexts
+├── navigation/              # React Navigation setup
+├── screens/                 # App screens
+│   ├── auth/
+│   └── jobs/
+├── storage/                 # AsyncStorage logic
+├── sync/                    # Offline → online sync handlers
+├── theme/                   # Typography & theme
+└── utils/                   # Shared utilities
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+🔁 Sync Logic Overview
+Jobs
 
-# Learn More
+Created/updated offline → saved with _syncStatus
 
-To learn more about React Native, take a look at the following resources:
+Synced automatically when online
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Local cache updated after server response
+
+Notes
+
+Stored locally when offline
+
+Synced using queued operations
+
+Videos
+
+Offline uploads stored in a queue
+
+Uploaded automatically when network restores
+
+UI updates reflect server state
+
+🧠 Architecture Principles Used
+
+Local-first UI rendering
+
+Client-generated IDs (clientJobId, clientNoteId, clientVideoId)
+
+Queue-based sync strategy
+
+Focus-based screen refresh (useFocusEffect)
+
+Clear separation of concerns:
+
+api/ → server communication
+
+storage/ → persistence
+
+sync/ → background sync
+
+🚀 Future Enhancements
+
+Offline video playback
+
+Multiple site videos per job
+
+Sync conflict resolution
+
+Job search & filters
+
+Push notifications
+
+Cloud backup
+
+👨‍💻 Author
+
+Shivam Pandey
+Full-Stack Developer (React Native + Node.js)
+
+📜 License
+
+This project is licensed under the MIT License.
+
+⭐ Final Note
+
+CJM is built with production-grade offline handling, not demo logic.
+It demonstrates real-world mobile engineering patterns used in scalable React Native applications.
